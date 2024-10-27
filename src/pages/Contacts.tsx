@@ -88,6 +88,7 @@ const Contacts: React.FC = () => {
         />
         <Button
           variant="text"
+          size="small"
           onClick={toggleSortOrder}
           sx={{
             textTransform: "none",

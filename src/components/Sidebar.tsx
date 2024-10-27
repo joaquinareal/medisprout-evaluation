@@ -8,11 +8,13 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import PeopleOutlineIcon from "@mui/icons-material/PeopleOutline";
 import PersonAddAltIcon from "@mui/icons-material/PersonAddAlt";
-import { Link as RouterLink } from "react-router-dom";
+import { Link as RouterLink, useLocation } from "react-router-dom";
 
 const drawerWidth = 240;
 
-export default function ResponsiveDrawer() {
+export default function Sidebar() {
+  const location = useLocation();
+
   const drawer = (
     <Box padding="20px">
       <img
@@ -30,7 +32,15 @@ export default function ResponsiveDrawer() {
           },
         ].map((item) => (
           <ListItem key={item.text} disablePadding>
-            <ListItemButton component={RouterLink} to={item.path}>
+            <ListItemButton
+              component={RouterLink}
+              to={item.path}
+              sx={{
+                borderRadius: "5px",
+                backgroundColor:
+                  location.pathname === item.path ? "lightgray" : "inherit",
+              }}
+            >
               <ListItemIcon>{item.icon}</ListItemIcon>
               <ListItemText primary={item.text} />
             </ListItemButton>
@@ -48,7 +58,6 @@ export default function ResponsiveDrawer() {
           width: { sm: drawerWidth },
           flexShrink: { sm: 0 },
         }}
-        bgcolor="red"
       >
         <Drawer
           variant="permanent"

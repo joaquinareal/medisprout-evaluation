@@ -87,7 +87,7 @@ const CreateContact: React.FC = () => {
             sx={{
               "& .MuiOutlinedInput-root": {
                 "& fieldset": {
-                  borderColor: nameError ? "red" : "#00AAE4",
+                  borderColor: positionError ? "red" : "none",
                 },
                 "&.Mui-focused fieldset": {
                   borderColor: nameError ? "red" : "#00AAE4",
@@ -110,7 +110,7 @@ const CreateContact: React.FC = () => {
             sx={{
               "& .MuiOutlinedInput-root": {
                 "& fieldset": {
-                  borderColor: positionError ? "red" : "#00AAE4",
+                  borderColor: positionError ? "red" : "none",
                 },
                 "&.Mui-focused fieldset": {
                   borderColor: positionError ? "red" : "#00AAE4",
@@ -118,15 +118,9 @@ const CreateContact: React.FC = () => {
               },
             }}
           >
-            <MenuItem data-testis="frontend-option" value="Frontend">
-              Frontend
-            </MenuItem>
-            <MenuItem data-testis="backend-option" value="Backend">
-              Backend
-            </MenuItem>
-            <MenuItem data-testis="other-option" value="Other">
-              Other
-            </MenuItem>
+            <MenuItem value="Frontend">Frontend</MenuItem>
+            <MenuItem value="Backend">Backend</MenuItem>
+            <MenuItem value="Other">Other</MenuItem>
           </TextField>
           <Button
             variant="contained"
