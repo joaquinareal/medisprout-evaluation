@@ -10,13 +10,14 @@ import {
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { addContact } from "../contactsApi";
 import { ToastContainer, toast } from "react-toastify";
+import { Contact } from "../types";
 import "react-toastify/dist/ReactToastify.css";
 
 const CreateContact: React.FC = () => {
-  const [name, setName] = useState("");
-  const [position, setPosition] = useState("");
-  const [nameError, setNameError] = useState("");
-  const [positionError, setPositionError] = useState("");
+  const [name, setName] = useState<string>("");
+  const [position, setPosition] = useState<string>("");
+  const [nameError, setNameError] = useState<string>("");
+  const [positionError, setPositionError] = useState<string>("");
   const queryClient = useQueryClient();
 
   const mutation = useMutation({
@@ -49,7 +50,7 @@ const CreateContact: React.FC = () => {
       return;
     }
 
-    const newContact = { name, position };
+    const newContact: Omit<Contact, "id"> = { name, position };
     mutation.mutate(newContact);
     setName("");
     setPosition("");

@@ -4,6 +4,7 @@ import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { fetchContacts, deleteContact } from "../contactsApi";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { Contact } from "../types";
 import {
   TextField,
   List,
@@ -21,7 +22,7 @@ const Contacts: React.FC = () => {
   const [sortAscending, setSortAscending] = useState(true);
   const queryClient = useQueryClient();
 
-  const { data: contacts = [] } = useQuery({
+  const { data: contacts = [] } = useQuery<Contact[]>({
     queryKey: ["contacts"],
     queryFn: fetchContacts,
     refetchOnWindowFocus: true,

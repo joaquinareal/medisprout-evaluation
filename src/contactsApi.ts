@@ -1,9 +1,4 @@
-interface Contact {
-  id: number;
-  name: string;
-  position: string;
-}
-
+import { Contact } from "./types";
 const API_URL = "http://localhost:5001/contacts";
 
 export const fetchContacts = async (): Promise<Contact[]> => {

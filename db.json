@@ -2,18 +2,18 @@
   "contacts": [
     {
       "id": "1",
-      "name": "Juan Perez",
-      "position": "Backend"
-    },
-    {
-      "id": "2",
       "name": "Joaquin Areal",
       "position": "Frontend"
     },
     {
-      "id": "3",
-      "name": "Luis Suarez",
+      "id": "2",
+      "name": "Pedro Gonzalez",
       "position": "Other"
+    },
+    {
+      "id": "3",
+      "name": "Nicolas Fernandez",
+      "position": "Backend"
     }
   ]
 }
