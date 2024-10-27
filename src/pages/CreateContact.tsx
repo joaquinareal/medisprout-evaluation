@@ -88,7 +88,7 @@ const CreateContact: React.FC = () => {
             sx={{
               "& .MuiOutlinedInput-root": {
                 "& fieldset": {
-                  borderColor: positionError ? "red" : "none",
+                  borderColor: nameError ? "red" : "none",
                 },
                 "&.Mui-focused fieldset": {
                   borderColor: nameError ? "red" : "#00AAE4",
