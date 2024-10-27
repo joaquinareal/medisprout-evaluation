@@ -7,13 +7,13 @@
     },
     {
       "id": "2",
-      "name": "Pedro Gonzalez",
-      "position": "Other"
+      "name": "Facundo Gonzalez",
+      "position": "Backend"
     },
     {
       "id": "3",
-      "name": "Nicolas Fernandez",
-      "position": "Backend"
+      "name": "Agustin Perez",
+      "position": "Other"
     }
   ]
 }
