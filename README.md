@@ -4,6 +4,8 @@
 
 This command installs all the necessary dependencies for the project. Make sure to run it before attempting to start the server or work on the project. The dependencies are specified in the `package.json` file.
 
+If having problems with the installation try removing the package lock and running npm install again
+
 ### `npm run server`
 
 This command starts the development server. Ensure that all dependencies are installed by running `npm install` before starting the server. The server will run on the port 5001 specified in the project's configuration.
