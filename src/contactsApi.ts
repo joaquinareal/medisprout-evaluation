@@ -17,26 +17,28 @@ export const fetchContacts = async (): Promise<Contact[]> => {
 export const addContact = async (
   contact: Omit<Contact, "id">
 ): Promise<Contact> => {
-  const contacts = await fetchContacts();
-  const highestId = contacts.reduce(
-    (maxId, contact) => Math.max(contact.id, maxId),
-    0
-  );
-  const newId = highestId + 1;
+  try {
+    const contacts = await fetchContacts();
+    const highestId = contacts.reduce(
+      (maxId, contact) => Math.max(contact.id, maxId),
+      0
+    );
+    const newId = highestId + 1;
 
-  const newContact = { ...contact, id: newId };
+    const newContact = { ...contact, id: newId.toString() };
 
-  const response = await fetch(API_URL, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(newContact),
-  });
-  if (!response.ok) {
+    const response = await fetch(API_URL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newContact),
+    });
+
+    return response.json();
+  } catch (error) {
     throw new Error("Failed to add contact");
   }
-  return response.json();
 };
 
 export const deleteContact = async (id: number): Promise<void> => {

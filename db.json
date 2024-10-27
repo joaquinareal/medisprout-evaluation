@@ -1,9 +1,19 @@
 {
   "contacts": [
     {
-      "id": 1,
+      "id": "1",
+      "name": "Juan Perez",
+      "position": "Backend"
+    },
+    {
+      "id": "2",
       "name": "Joaquin Areal",
       "position": "Frontend"
+    },
+    {
+      "id": "3",
+      "name": "Luis Suarez",
+      "position": "Other"
     }
   ]
 }

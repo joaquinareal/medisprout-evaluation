@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
-import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
 import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { fetchContacts, deleteContact } from "../contactsApi";
@@ -26,6 +24,7 @@ const Contacts: React.FC = () => {
   const { data: contacts = [] } = useQuery({
     queryKey: ["contacts"],
     queryFn: fetchContacts,
+    refetchOnWindowFocus: true,
   });
 
   const deleteMutation = useMutation({
@@ -33,6 +32,10 @@ const Contacts: React.FC = () => {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["contacts"] });
       toast.success("Contact deleted");
+    },
+    onError: (error) => {
+      console.error("Error deleting contact:", error);
+      toast.error("Failed to delete contact");
     },
   });
 
@@ -53,8 +56,10 @@ const Contacts: React.FC = () => {
       contact.name.toLowerCase().includes(filter.toLowerCase())
     )
     .sort((a, b) => {
-      if (a.name < b.name) return sortAscending ? -1 : 1;
-      if (a.name > b.name) return sortAscending ? 1 : -1;
+      if (sortAscending) {
+        if (a.name < b.name) return -1;
+        if (a.name > b.name) return 1;
+      }
       return 0;
     });
 
@@ -86,17 +91,13 @@ const Contacts: React.FC = () => {
           onClick={toggleSortOrder}
           sx={{
             textTransform: "none",
+            backgroundColor: sortAscending ? "#ddf4f5" : "none",
             "&:hover": {
-              backgroundColor: "#cfcfcf",
+              backgroundColor: "#ddf4f5",
             },
           }}
         >
           Sort by name
-          {sortAscending ? (
-            <ArrowUpwardIcon style={{ fontSize: 15 }} />
-          ) : (
-            <ArrowDownwardIcon style={{ fontSize: 15 }} />
-          )}
         </Button>
         <List>
           {filteredContacts.map((contact) => (
@@ -108,7 +109,10 @@ const Contacts: React.FC = () => {
                   aria-label="delete"
                   onClick={() => handleDelete(contact.id)}
                 >
-                  <DeleteOutlineOutlinedIcon style={{ color: "#d30a0a" }} />
+                  <DeleteOutlineOutlinedIcon
+                    style={{ color: "#d30a0a" }}
+                    data-testid={`delete-button-${contact.id}`}
+                  />
                 </IconButton>
               }
             >

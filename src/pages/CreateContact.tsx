@@ -87,18 +87,18 @@ const CreateContact: React.FC = () => {
             sx={{
               "& .MuiOutlinedInput-root": {
                 "& fieldset": {
-                  borderColor: nameError ? "red" : "#00AAE4", // Cambia el color del borde según el estado de error
+                  borderColor: nameError ? "red" : "#00AAE4",
                 },
                 "&.Mui-focused fieldset": {
-                  borderColor: nameError ? "red" : "#00AAE4", // Cambia el color del borde cuando está enfocado y no hay error
+                  borderColor: nameError ? "red" : "#00AAE4",
                 },
               },
             }}
           />
-
           <TextField
             select
             label="Position"
+            data-testid="position-select"
             value={position}
             onChange={(e) => setPosition(e.target.value)}
             onBlur={() => {
@@ -110,17 +110,23 @@ const CreateContact: React.FC = () => {
             sx={{
               "& .MuiOutlinedInput-root": {
                 "& fieldset": {
-                  borderColor: positionError ? "red" : "#00AAE4", // Cambia el color del borde según el estado de error
+                  borderColor: positionError ? "red" : "#00AAE4",
                 },
                 "&.Mui-focused fieldset": {
-                  borderColor: positionError ? "red" : "#00AAE4", // Cambia el color del borde cuando está enfocado y no hay error
+                  borderColor: positionError ? "red" : "#00AAE4",
                 },
               },
             }}
           >
-            <MenuItem value="Frontend">Frontend</MenuItem>
-            <MenuItem value="Backend">Backend</MenuItem>
-            <MenuItem value="Other">Other</MenuItem>
+            <MenuItem data-testis="frontend-option" value="Frontend">
+              Frontend
+            </MenuItem>
+            <MenuItem data-testis="backend-option" value="Backend">
+              Backend
+            </MenuItem>
+            <MenuItem data-testis="other-option" value="Other">
+              Other
+            </MenuItem>
           </TextField>
           <Button
             variant="contained"

@@ -1,5 +1,10 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  Navigate,
+} from "react-router-dom";
 import Contacts from "./pages/Contacts";
 import CreateContact from "./pages/CreateContact";
 import Sidebar from "./components/Sidebar";
@@ -23,6 +28,7 @@ const App: React.FC = () => {
             marginY="80px"
           >
             <Routes>
+              <Route path="/" element={<Navigate to="/contacts" />} />
               <Route path="/contacts" element={<Contacts />} />
               <Route path="/contacts/create" element={<CreateContact />} />
             </Routes>
